@@ -1,0 +1,5 @@
+docker tag quiz-frontend <your-dockerhub-username>/quiz-frontend:latest
+docker tag quiz-backend <your-dockerhub-username>/quiz-backend:latest
+
+docker push <your-dockerhub-username>/quiz-frontend:latest
+docker push <your-dockerhub-username>/quiz-backend:latest
