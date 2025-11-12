@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quiz-backend
+  template:
+    metadata:
+      labels:
+        app: quiz-backend
+    spec:
+      containers:
+        - name: quiz-backend
+          image: <your-dockerhub-username>/quiz-backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              value: "mongodb://mongo-service:27017/quizdb"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quiz-backend-service
+spec:
+  selector:
+    app: quiz-backend
+  ports:
+    - port: 5000
+      targetPort: 5000
